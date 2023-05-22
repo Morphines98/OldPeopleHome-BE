@@ -22,10 +22,10 @@ namespace MeerPflege.API.Extensions
       {
         opt.AddPolicy("CorsPolicy", policy =>
         {
-          // policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:9000");
-          policy.AllowAnyHeader()
-          .AllowAnyMethod()
-          .AllowAnyOrigin();
+          policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:9000");
+          // policy.AllowAnyHeader()
+          // .AllowAnyMethod()
+          // .AllowAnyOrigin();
         });
       });
 

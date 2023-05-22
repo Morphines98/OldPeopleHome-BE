@@ -28,6 +28,7 @@ namespace MeerPflege.API.Controllers
     [HttpPost]
     public async Task<IActionResult> CreateHomeGroups(HomeGroup homeGroup)
     {
+      homeGroup.HomeId = GetHomeId(HttpContext);
       return HandleResult(await Mediator.Send(new Create.Command { HomeGroup = homeGroup }));
     }
 
