@@ -35,6 +35,8 @@ namespace MeerPflege.API.Controllers
     [HttpPut("{id}")]
     public async Task<IActionResult> EditHomeGroup(int id, HomeGroup homeGroup)
     {
+      
+      homeGroup.HomeId = GetHomeId(HttpContext);
       homeGroup.Id = id;
       return Ok(await Mediator.Send(new Edit.Command { HomeGroup = homeGroup }));
     }
