@@ -1,0 +1,123 @@
+# .NET Core
+project.lock.json
+.project.json.user
+*.csproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.ide/
+.DS_Store
+*.bak
+*.cache
+*.dll
+*.exe
+*.nupkg
+*.tmp
+*.log
+*.npm
+*.yarn
+*.pfx
+*.publishsettings
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Enable "build/" folder in the NuGet Packages folder
+!**/packages/*/build/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# TeamCity is a build add-in
+_TeamCity*
+
+# DotCover is a Code Coverage Tool
+*.dotCover
+
+# NCrunch
+_NCrunch*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# Azure Artifacts
+!.nuget/packages/*
+!.azure-pipelines/*.lock.json
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Visual Studio for Mac
+.idea/
+
+# Rider
+.idea/
+*.sln.iml
+
+# User-specific stuff
+.DS_Store
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.cache
+MeerPflege.API/obj/Debug/net6.0/MeerPflege.API.assets.cache
+MeerPflege.Application/obj/Debug/net6.0/MeerPflege.Application.assets.cache
+MeerPflege.Domain/obj/Debug/net6.0/MeerPflege.Domain.assets.cache
+MeerPflege.Persistence/obj/Debug/net6.0/MeerPflege.Persistence.assets.cache
