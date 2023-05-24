@@ -1,4 +1,5 @@
 using MeerPflege.Application.DTOs;
+using MeerPflege.Application.News;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,16 +16,29 @@ namespace MeerPflege.API.Controllers
     [HttpGet(Name = "GetNews")]
     public async Task<ActionResult<List<NewsItemDto>>> GetNews()
     {
-      var result = await Mediator.Send(new Application.News.List.Query());
+      var result = await Mediator.Send(new List.Query());
       return HandleResult(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateHomeGroups(NewsItemDto newsItem)
+    public async Task<IActionResult> CreateNews(NewsItemDto newsItem)
     {
       newsItem.HomeId = GetHomeId(HttpContext);
       newsItem.AddedDate = DateTime.Now;
-      return HandleResult(await Mediator.Send(new Application.News.Create.Command { NewsItem = newsItem }));
+      return HandleResult(await Mediator.Send(new Create.Command { NewsItem = newsItem }));
+    }
+    
+    [HttpPut("{id}")]
+    public async Task<IActionResult> EditNews(int id,NewsItemDto newsItem)
+    {
+      newsItem.HomeId = GetHomeId(HttpContext);
+      return HandleResult(await Mediator.Send(new Edit.Command { NewsItem = newsItem }));
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteNews(int id)
+    {
+      return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
     }
   }
 }

@@ -25,7 +25,7 @@ namespace MeerPflege.Application.News
 
       public async Task<Result<List<NewsItemDto>>> Handle(Query request, CancellationToken cancellationToken)
       {
-        var newsData = await _dataContext.NewsItems.Include("NewsItemAttachments").ToListAsync();
+        var newsData = await _dataContext.NewsItems.Include("NewsItemAttachments").Where(a => a.IsDeleted == false).ToListAsync();
         var result = _mapper.Map<List<NewsItemDto>>(newsData);
 
         return Result<List<NewsItemDto>>.Success(result);

@@ -30,6 +30,7 @@ namespace MeerPflege.Application.News
 
       public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
       {
+        request.NewsItem.AddedDate = DateTime.Now;
         var newsData = _mapper.Map<NewsItem>(request.NewsItem);
         if (request.NewsItem.NewsItemAttachments != null && request.NewsItem.NewsItemAttachments.Any())
           newsData.NewsItemAttachments = _mapper.Map<List<NewsItemAttachment>>(request.NewsItem.NewsItemAttachments);

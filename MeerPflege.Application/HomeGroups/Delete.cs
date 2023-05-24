@@ -27,8 +27,7 @@ namespace MeerPflege.Application.HomeGroups
             {
                 var entity = await _context.HomeGroups.FindAsync(request.Id);
                 if(entity == null) return null;
-
-                _context.HomeGroups.Remove(entity);
+                entity.IsDeleted = true;
                 var result = await _context.SaveChangesAsync() > 0;
 
                 if(!result) return Result<Unit>.Failure("Failed to delete.");

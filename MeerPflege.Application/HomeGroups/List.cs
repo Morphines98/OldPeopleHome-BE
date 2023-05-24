@@ -23,7 +23,7 @@ namespace MeerPflege.Application.HomeGroups
 
       public async Task<Result<List<HomeGroup>>> Handle(Query request, CancellationToken cancellationToken)
       {
-        return Result<List<HomeGroup>>.Success(await _dataContext.HomeGroups.Where(a => a.HomeId == request.HomeId).ToListAsync());
+        return Result<List<HomeGroup>>.Success(await _dataContext.HomeGroups.Where(a => a.HomeId == request.HomeId && a.IsDeleted == false).ToListAsync());
       }
     }
   }

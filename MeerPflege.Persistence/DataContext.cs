@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 namespace MeerPflege.Persistence
 {
     //dotnet ef migrations add addInitialCreate -p .\MeerPflege.Persistence\ -s .\MeerPflege.API\
+    //din persistance dotnet ef -s ../MeerPflege.API  migrations add addNurse 
+    //din persistance dotnet ef -s ../MeerPflege.API  migrations database update
 
     //dotnet ef migrations add IdentityAdded -p .\MeerPflege.Persistence\ -s .\MeerPflege.API\
     public class DataContext : IdentityDbContext<AppUser>
@@ -19,5 +21,6 @@ namespace MeerPflege.Persistence
         public DbSet<HomeGroup> HomeGroups { get; set; }
         public DbSet<NewsItem> NewsItems { get; set; }
         public DbSet<NewsItemAttachment> NewsItemAttachments { get; set; }
+        public DbSet<Nurse> Nurses { get; set; }
     }
 }

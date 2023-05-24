@@ -14,6 +14,6 @@ namespace MeerPflege.Domain
 
     public string Url { get; set; }
     public DateTime AddedDate { get; set; }
-    public bool Deleted { get; set; }
+     public bool Deleted { get; set; }
   }
 }
