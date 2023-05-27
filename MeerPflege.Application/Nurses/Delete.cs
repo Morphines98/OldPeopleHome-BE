@@ -1,14 +1,13 @@
 using AutoMapper;
 using MediatR;
 using MeerPflege.Application.Core;
-using MeerPflege.Application.DTOs;
 using MeerPflege.Persistence;
-using Microsoft.EntityFrameworkCore;
 
-namespace MeerPflege.Application.News
+namespace MeerPflege.Application.Nurses
 {
-  public class Delete
-  {
+    public class Delete
+    {
+        
     public class Command:IRequest<Result<Unit>>
         {
             public int Id { get; set; }
@@ -17,14 +16,14 @@ namespace MeerPflege.Application.News
     public class Handler : IRequestHandler<Command, Result<Unit>>
     {
       private readonly DataContext _dataContext;
-      public Handler(DataContext context, IMapper mapper)
+      public Handler(DataContext context)
       {
         _dataContext = context;
       }
 
        public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
       {
-        var entity = await _dataContext.NewsItems.FindAsync(request.Id);
+        var entity = await _dataContext.Nurses.FindAsync(request.Id);
         if(entity == null) return null;
                 entity.IsDeleted = true;
 
@@ -32,8 +31,7 @@ namespace MeerPflege.Application.News
 
                 if(!result) return Result<Unit>.Failure("Failed to delete.");
 
-                return Result<Unit>.Success(Unit.Value);  
-      }
+                return Result<Unit>.Success(Unit.Value);      }
     }
-  }
+    }
 }

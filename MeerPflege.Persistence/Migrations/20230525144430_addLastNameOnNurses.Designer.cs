@@ -3,6 +3,7 @@ using System;
 using MeerPflege.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeerPflege.Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230525144430_addLastNameOnNurses")]
+    partial class addLastNameOnNurses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,6 @@ namespace MeerPflege.Persistence.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CarerId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -44,9 +43,6 @@ namespace MeerPflege.Persistence.Migrations
                     b.Property<int>("HomeId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsInactive")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("tinyint(1)");
 
@@ -60,9 +56,6 @@ namespace MeerPflege.Persistence.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
-
-                    b.Property<int?>("NurseId")
-                        .HasColumnType("int");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
@@ -93,49 +86,6 @@ namespace MeerPflege.Persistence.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("MeerPflege.Domain.Carer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Adress")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("CarerAvatarUrl")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("City")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("HomeId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PostCode")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HomeId");
-
-                    b.ToTable("Carers");
                 });
 
             modelBuilder.Entity("MeerPflege.Domain.Home", b =>
@@ -465,17 +415,6 @@ namespace MeerPflege.Persistence.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("MeerPflege.Domain.Carer", b =>
-                {
-                    b.HasOne("MeerPflege.Domain.Home", "Home")
-                        .WithMany()
-                        .HasForeignKey("HomeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Home");
                 });
 
             modelBuilder.Entity("MeerPflege.Domain.HomeGroup", b =>

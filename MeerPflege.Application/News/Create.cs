@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using MeerPflege.Application.Core;
@@ -11,7 +7,7 @@ using MeerPflege.Persistence;
 
 namespace MeerPflege.Application.News
 {
-  public class Create
+    public class Create
   {
     public class Command : IRequest<Result<Unit>>
     {

@@ -27,7 +27,7 @@ namespace MeerPflege.API.Controllers
         public async Task<ActionResult<UserDto>> Login(LoginDto login)
         {
             var user = await _userManager.FindByEmailAsync(login.Email);
-            if(user == null)
+            if(user == null || user.IsInactive)
                 return Unauthorized();
             var result = await _signInManager.CheckPasswordSignInAsync(user, login.Password, false);
             var roles = await _userManager.GetRolesAsync(user);
