@@ -1,17 +1,15 @@
-namespace MeerPflege.Domain
+namespace MeerPflege.Application.DTOs
 {
-    public class Activity
+    public class ActivityDto
     {
-        public int Id { get; set; } 
+         public int Id { get; set; } 
         public virtual int HomeId { get; set; }
-        public virtual Home Home { get; set; }
         public string Title { get; set; }
+        public string StringDate { get; set; }
         public DateTime Date { get; set; }
         public string SpecialCondition { get; set; }
         public string Description { get; set; }
         public string  Location { get; set; }
         public int GroupId { get; set; }
-        public bool IsDeleted { get; set; }
-
     }
 }

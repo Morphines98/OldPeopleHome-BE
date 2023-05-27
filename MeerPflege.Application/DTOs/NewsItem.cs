@@ -10,7 +10,6 @@ namespace MeerPflege.Application.DTOs
     public virtual int HomeId { get; set; }
     public bool? ForAllGroups { get; set; }
     public int? GroupId { get; set; }
-    public bool IsDeleted { get; set; }
     public DateTime AddedDate { get; set; }
     public List<NewsItemAttachmentDto> NewsItemAttachments { get; set; }
   }

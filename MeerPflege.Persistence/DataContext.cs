@@ -16,7 +16,7 @@ namespace MeerPflege.Persistence
 
         }
 
-        // public DbSet<Activity> Activities { get; set; }
+        public DbSet<Activity> Activities { get; set; }
         public DbSet<Home> Homes { get; set; }
         public DbSet<HomeGroup> HomeGroups { get; set; }
         public DbSet<NewsItem> NewsItems { get; set; }

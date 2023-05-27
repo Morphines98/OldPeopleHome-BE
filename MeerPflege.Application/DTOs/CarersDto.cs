@@ -12,6 +12,5 @@ namespace MeerPflege.Application.DTOs
         public string Adress { get; set; }
         public string PostCode { get; set; }
         public string CarerAvatarUrl { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

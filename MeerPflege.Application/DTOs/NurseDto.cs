@@ -11,7 +11,6 @@ namespace MeerPflege.Application.DTOs
     public string NurseAvatarUrl { get; set; }
     public int RoleId { get; set; }
     public string Email { get; set; }
-    public bool IsDeleted { get; set; }
     public string PhoneNumber { get; set; }
     public DateTime StartWorkingDate { get; set; }
   }

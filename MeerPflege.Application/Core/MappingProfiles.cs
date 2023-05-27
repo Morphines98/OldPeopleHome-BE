@@ -13,6 +13,7 @@ namespace MeerPflege.Application.Core
       CreateMap<NewsItemAttachment, NewsItemAttachmentDto>().ReverseMap();
       CreateMap<Nurse, NurseDto>().ReverseMap();
       CreateMap<Carer, CarersDto>().ReverseMap();
+      CreateMap<Activity, ActivityDto>().ReverseMap();
     }
   }
 }
