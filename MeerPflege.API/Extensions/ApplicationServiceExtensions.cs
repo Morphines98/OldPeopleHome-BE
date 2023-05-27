@@ -32,6 +32,7 @@ namespace MeerPflege.API.Extensions
       services.AddMediatR(typeof(MeerPflege.Application.HomeGroups.List.Handler).Assembly);
       services.AddMediatR(typeof(MeerPflege.Application.Homes.List.Handler).Assembly);
       services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+      services.AddSingleton(typeof(MeerPflege.Application.Azure.BlobService));
 
       return services;
     }
