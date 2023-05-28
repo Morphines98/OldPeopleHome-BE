@@ -121,3 +121,4 @@ MeerPflege.API/obj/Debug/net6.0/MeerPflege.API.assets.cache
 MeerPflege.Application/obj/Debug/net6.0/MeerPflege.Application.assets.cache
 MeerPflege.Domain/obj/Debug/net6.0/MeerPflege.Domain.assets.cache
 MeerPflege.Persistence/obj/Debug/net6.0/MeerPflege.Persistence.assets.cache
+.vscode/tasks.json
