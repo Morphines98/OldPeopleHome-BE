@@ -18,10 +18,12 @@ namespace MeerPflege.API.Extensions
                 opt.Password.RequireUppercase = true;
                 opt.Password.RequireLowercase = true;
                 opt.User.RequireUniqueEmail = true;
+                opt.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultProvider;
             })
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<DataContext>()
-            .AddSignInManager<SignInManager<AppUser>>();
+            .AddSignInManager<SignInManager<AppUser>>()
+            .AddDefaultTokenProviders();
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("dada otelu e viata mea"));
 
