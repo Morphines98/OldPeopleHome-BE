@@ -77,14 +77,13 @@ namespace MeerPflege.API.Controllers
 
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteNurse(int id)
-        {
-            var user = _userManager.Users.FirstOrDefault(a => a.CarerId.HasValue && a.CarerId.Value == id);
-            user.IsInactive = true;
-            await _userManager.UpdateAsync(user);
-            return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCarer(int id)
+        {
+            var user = _userManager.Users.FirstOrDefault(a=>a.CarerId.HasValue && a.CarerId.Value == id);
+            await _userManager.UpdateAsync(user);
+            return HandleResult(await Mediator.Send(new DeleteCarer.Command{Id = id}));
         }
     }
 }

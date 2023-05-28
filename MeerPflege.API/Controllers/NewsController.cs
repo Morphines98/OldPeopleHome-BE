@@ -1,7 +1,7 @@
 using MeerPflege.Application.DTOs;
-using MeerPflege.Application.News;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MeerPflege.Application.News;
 
 namespace MeerPflege.API.Controllers
 {

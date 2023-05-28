@@ -4,7 +4,7 @@ using MeerPflege.Persistence;
 
 namespace MeerPflege.Application.Carers
 {
-    public class Delete
+    public class DeleteCarer
     {
         public class Command : IRequest<Result<Unit>>
         {

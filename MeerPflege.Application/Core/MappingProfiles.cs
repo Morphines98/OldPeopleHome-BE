@@ -14,6 +14,7 @@ namespace MeerPflege.Application.Core
       CreateMap<Nurse, NurseDto>().ReverseMap();
       CreateMap<Carer, CarersDto>().ReverseMap();
       CreateMap<Activity, ActivityDto>().ReverseMap();
+      CreateMap<Elder, ElderDto>().ReverseMap();
     }
   }
 }

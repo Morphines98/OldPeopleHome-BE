@@ -1,5 +1,5 @@
 using System.Globalization;
-using MeerPflege.Application.Activities;
+using MeerPflege.Application;
 using MeerPflege.Application.DTOs;
 using MeerPflege.Domain;
 using Microsoft.AspNetCore.Identity;
@@ -24,7 +24,7 @@ namespace MeerPflege.API.Controllers
         [HttpGet(Name = "GetActivties")]
         public async Task<ActionResult<List<ActivityDto>>> GetActivities()
         {
-            var result = await Mediator.Send(new List.Query());
+            var result = await Mediator.Send(new Application.Activities.List.Query());
             return HandleResult(result);
         }
 
@@ -35,13 +35,13 @@ namespace MeerPflege.API.Controllers
             var date = new DateTime();
             date = DateTime.ParseExact(activityDto.StringDate, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
             activityDto.Date = date;
-            return HandleResult(await Mediator.Send(new Create.Command { ActivityDto = activityDto }));
+            return HandleResult(await Mediator.Send(new Application.Activities.Create.Command { ActivityDto = activityDto }));
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteActivity(int id)
         {
-            return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
+            return HandleResult(await Mediator.Send(new Application.Activities.Delete.Command { Id = id }));
         }
     }
 }
