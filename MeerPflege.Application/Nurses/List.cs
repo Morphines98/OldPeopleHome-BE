@@ -9,7 +9,10 @@ namespace MeerPflege.Application.Nurses
 {
   public class List
   {
-    public class Query : IRequest<Result<List<NurseDto>>> { }
+    public class Query : IRequest<Result<List<NurseDto>>>
+    {
+      public int? Id { get; set; }
+    }
 
     public class Handler : IRequestHandler<Query, Result<List<NurseDto>>>
     {
@@ -24,6 +27,10 @@ namespace MeerPflege.Application.Nurses
       public async Task<Result<List<NurseDto>>> Handle(Query request, CancellationToken cancellationToken)
       {
         var newsData = await _dataContext.Nurses.Where(a => a.IsDeleted == false).ToListAsync();
+        if (request.Id != null)
+        {
+          newsData = newsData.Where(a=> a.Id == request.Id).ToList();
+        }
         var result = _mapper.Map<List<NurseDto>>(newsData);
 
         return Result<List<NurseDto>>.Success(result);
