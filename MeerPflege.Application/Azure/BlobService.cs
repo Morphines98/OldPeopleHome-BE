@@ -6,10 +6,10 @@ namespace MeerPflege.Application.Azure
 {
   public class BlobService
   {
-    private const string blobServiceEndpoint = "https://oldpeopleshome.blob.core.windows.net";
+    private const string blobServiceEndpoint = "https://oldpeoplehome.blob.core.windows.net";
     private const string blobContainerName = "files";
-    private const string storageAccountName = "oldpeopleshome";
-    private const string storageAccountKey = "iwAsvGJrvn2XKcOPk9la1LovsHFv35sKLDQ+vE9uhxZFKiXupxN1mX+x21e7XqRQ6pDuyUBDx6g3+AStYwwiKA==";
+    private const string storageAccountName = "oldpeoplehome";
+    private const string storageAccountKey = "eQyW4Onk4BDlAMb/ak2/ySwUTwz3LNwcSWeEloLUb/PXy4N3FEYLQHoXTBTYyCw1lSaE2L8TrGlY+ASts/SUrg==";
 
     private BlobServiceClient _serviceClient;
     private BlobContainerClient _container;
