@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MeerPflege.API.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class EldersController :BaseApiController
+    public class EldersController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
 
@@ -28,5 +28,27 @@ namespace MeerPflege.API.Controllers
             var result = await Mediator.Send(new List.Query());
             return HandleResult(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateElders(ElderDto elderDto)
+        {
+            elderDto.HomeId = GetHomeId(HttpContext);
+            return HandleResult(await Mediator.Send(new Create.Command { ElderDto = elderDto }));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditElders(int id, ElderDto elderDto)
+        {
+
+            elderDto.HomeId = GetHomeId(HttpContext);
+            return Ok(await Mediator.Send(new Edit.Command { ElderDto = elderDto }));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHomeGroup(int id)
+        {
+            return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
+        }
+
     }
 }
