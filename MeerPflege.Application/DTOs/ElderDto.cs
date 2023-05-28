@@ -8,6 +8,7 @@ namespace MeerPflege.Application.DTOs
         public string LastName { get; set; }
         public int GroupId { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public string StringDate { get; set; }
         public string Hobies { get; set; }
         public int CarerId { get; set; }
         public string MedicalConditions { get; set; }
