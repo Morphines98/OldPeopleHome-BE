@@ -1,3 +1,4 @@
+using System.Globalization;
 using MeerPflege.Application.DTOs;
 using MeerPflege.Application.Elders;
 using MeerPflege.Domain;
@@ -33,6 +34,9 @@ namespace MeerPflege.API.Controllers
         public async Task<IActionResult> CreateElders(ElderDto elderDto)
         {
             elderDto.HomeId = GetHomeId(HttpContext);
+            var date = new DateTime();
+            date = DateTime.ParseExact(elderDto.StringDate, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
+            elderDto.DateOfBirth = date;
             return HandleResult(await Mediator.Send(new Create.Command { ElderDto = elderDto }));
         }
 

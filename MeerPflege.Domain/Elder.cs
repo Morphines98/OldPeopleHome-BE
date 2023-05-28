@@ -13,6 +13,7 @@ namespace MeerPflege.Domain
         public int CarerId { get; set; }
         public virtual Carer Carer { get; set; }
         public string MedicalConditions { get; set; }
+        public string  AvatarUrl { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

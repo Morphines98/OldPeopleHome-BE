@@ -11,6 +11,7 @@ namespace MeerPflege.Application.DTOs
         public string StringDate { get; set; }
         public string Hobies { get; set; }
         public int CarerId { get; set; }
+        public string  AvatarUrl { get; set; }
         public string MedicalConditions { get; set; }
     }
 }
