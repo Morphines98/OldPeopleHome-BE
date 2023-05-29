@@ -21,6 +21,8 @@ namespace MeerPflege.Persistence
         public DbSet<HomeGroup> HomeGroups { get; set; }
         public DbSet<NewsItem> NewsItems { get; set; }
         public DbSet<NewsItemAttachment> NewsItemAttachments { get; set; }
+        public DbSet<WallItem> WallItems { get; set; }
+        public DbSet<WallItemAttachment> WallItemAttachments { get; set; }
         public DbSet<Nurse> Nurses { get; set; }
         public DbSet<Carer> Carers { get; set; }
         public DbSet<Elder> Elders { get; set; }

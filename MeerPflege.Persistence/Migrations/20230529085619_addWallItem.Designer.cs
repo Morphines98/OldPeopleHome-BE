@@ -3,6 +3,7 @@ using System;
 using MeerPflege.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeerPflege.Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230529085619_addWallItem")]
+    partial class addWallItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -439,18 +441,10 @@ namespace MeerPflege.Persistence.Migrations
                     b.Property<int?>("GroupId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("Title")
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("HomeId");
 
                     b.ToTable("WallItems");
                 });
@@ -686,17 +680,6 @@ namespace MeerPflege.Persistence.Migrations
                 });
 
             modelBuilder.Entity("MeerPflege.Domain.Nurse", b =>
-                {
-                    b.HasOne("MeerPflege.Domain.Home", "Home")
-                        .WithMany()
-                        .HasForeignKey("HomeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Home");
-                });
-
-            modelBuilder.Entity("MeerPflege.Domain.WallItem", b =>
                 {
                     b.HasOne("MeerPflege.Domain.Home", "Home")
                         .WithMany()
