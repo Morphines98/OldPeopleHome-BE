@@ -25,8 +25,6 @@ namespace MeerPflege.API.Controllers
         public async Task<IActionResult> CreateWallItem(WallItemDto wallItemDto)
         {
             wallItemDto.HomeId = GetHomeId(HttpContext);
-            wallItemDto.Date = DateTime.Now;
-            
             return HandleResult(await Mediator.Send(new Create.Command {WallItemDto = wallItemDto }));
         }
 
