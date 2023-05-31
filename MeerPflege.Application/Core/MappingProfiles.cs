@@ -17,6 +17,10 @@ namespace MeerPflege.Application.Core
       CreateMap<Elder, ElderDto>().ReverseMap();
       CreateMap<WallItem, WallItemDto>().ReverseMap();
       CreateMap<WallItemAttachment, WallItemAttachmentDto>().ReverseMap();
+      CreateMap<ActivityElderPresence, ActivityElderDto>();
+      CreateMap<ActivityElderDto,ActivityElderPresence>()
+      .ForMember(dest => dest.Elder,opt =>opt.Ignore())
+      .ForMember(dest => dest.Activity,opt =>opt.Ignore());
     }
   }
 }

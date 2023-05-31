@@ -26,5 +26,6 @@ namespace MeerPflege.Persistence
         public DbSet<Nurse> Nurses { get; set; }
         public DbSet<Carer> Carers { get; set; }
         public DbSet<Elder> Elders { get; set; }
+        public DbSet<ActivityElderPresence> ActivityElderPresences { get; set; }
     }
 }

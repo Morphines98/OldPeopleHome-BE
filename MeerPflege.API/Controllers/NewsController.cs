@@ -20,6 +20,13 @@ namespace MeerPflege.API.Controllers
       return HandleResult(result);
     }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<NewsItemDto>> GetNewsById(int id)
+    {
+      var result = await Mediator.Send(new View.Query{Id = id});
+      return HandleResult(result);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateNews(NewsItemDto newsItem)
     {

@@ -28,7 +28,9 @@ namespace MeerPflege.Application.News
                  var entity =await _context.NewsItems.FindAsync(request.NewsItem.Id);
 
                 if(entity == null) return null;
-                _mapper.Map(request.NewsItem, entity);
+                entity.Content = request.NewsItem.Content;
+                entity.Title = request.NewsItem.Title;
+                entity.GroupId = request.NewsItem.GroupId;
             
                 var result = await _context.SaveChangesAsync() > 0;
                 if(!result) return Result<Unit>.Failure("Failed to update.");
