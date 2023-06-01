@@ -18,5 +18,7 @@ namespace MeerPflege.Domain
          public string CarerAvatarUrl { get; set; }
         public bool IsDeleted { get; set; } 
 
+        public virtual List<Elder> Elders { get; set; }
+
     }
 }
