@@ -32,6 +32,10 @@ namespace MeerPflege.Application.Nurses
                 entity.LastName = request.NurseDto.LastName;
                 entity.PhoneNumber = request.NurseDto.PhoneNumber;
                 entity.GroupId = request.NurseDto.GroupId;
+                if(!string.IsNullOrEmpty(request.NurseDto.NurseAvatarUrl))
+                {
+                    entity.NurseAvatarUrl = request.NurseDto.NurseAvatarUrl;
+                }
             
                 var result = await _context.SaveChangesAsync() > 0;
                 if(!result) return Result<Unit>.Failure("Failed to update.");
