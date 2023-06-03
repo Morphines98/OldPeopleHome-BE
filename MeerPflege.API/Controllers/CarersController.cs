@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using MediatR;
 using MeerPflege.Application.Carers;
 using MeerPflege.Application.DTOs;
@@ -8,10 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MeerPflege.API.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,CareTaker")]
     public class CarersController : BaseApiController
     {
-    
+
         private readonly UserManager<AppUser> _userManager;
 
         public CarersController(UserManager<AppUser> userManager)
@@ -24,8 +25,13 @@ namespace MeerPflege.API.Controllers
             return context.User.FindFirst("HomeId") != null ? Int32.Parse(context.User.FindFirst("HomeId").Value) : 0;
         }
 
+        private string GetEmail(HttpContext context)
+        {
+            return context.User.FindFirst(ClaimTypes.Email) != null ? context.User.FindFirst(ClaimTypes.Email).Value : "";
+        }
+
         [HttpPost]
-        public async Task<IActionResult> CreateNurse(CarersDto carerDto)
+        public async Task<IActionResult> CreateCarer(CarersDto carerDto)
         {
             carerDto.HomeId = GetHomeId(HttpContext);
 
@@ -56,8 +62,20 @@ namespace MeerPflege.API.Controllers
             return HandleResult(result);
         }
 
+        [Authorize(Roles = Role.CareTaker)]
+        [HttpGet("GetProfileInfo")]
+        public async Task<ActionResult<CarersDto>> GetProfileInfo()
+        {
+            var email = GetEmail(HttpContext);
+            var user = await _userManager.FindByEmailAsync(email);
+
+            var result = await Mediator.Send(new List.Query() { Id = user.CarerId });
+            var data = Application.Core.Result<CarersDto>.Success(result.Value.FirstOrDefault());
+            return HandleResult(data);
+        }
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditNurse(int id, CarersDto carerDto)
+        public async Task<IActionResult> EditCarer(int id, CarersDto carerDto)
         {
 
             carerDto.HomeId = GetHomeId(HttpContext);
@@ -67,8 +85,8 @@ namespace MeerPflege.API.Controllers
             var user = _userManager.Users.FirstOrDefault(a => a.CarerId.HasValue && a.CarerId.Value == carerDto.Id);
             if (user.Email != carerDto.Email)
             {
-                var result = await _userManager.SetEmailAsync(user,carerDto.Email);
-                var resultName = await _userManager.SetUserNameAsync(user,carerDto.Email);
+                var result = await _userManager.SetEmailAsync(user, carerDto.Email);
+                var resultName = await _userManager.SetUserNameAsync(user, carerDto.Email);
                 await _userManager.UpdateAsync(user);
             }
 
@@ -81,9 +99,9 @@ namespace MeerPflege.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCarer(int id)
         {
-            var user = _userManager.Users.FirstOrDefault(a=>a.CarerId.HasValue && a.CarerId.Value == id);
+            var user = _userManager.Users.FirstOrDefault(a => a.CarerId.HasValue && a.CarerId.Value == id);
             await _userManager.UpdateAsync(user);
-            return HandleResult(await Mediator.Send(new DeleteCarer.Command{Id = id}));
+            return HandleResult(await Mediator.Send(new DeleteCarer.Command { Id = id }));
         }
     }
 }
