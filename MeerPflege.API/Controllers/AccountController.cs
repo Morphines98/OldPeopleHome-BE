@@ -1,5 +1,7 @@
+using System.Web;
 using MeerPflege.API.DTOs;
 using MeerPflege.API.Services;
+using MeerPflege.Application.SendGrid;
 using MeerPflege.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +17,15 @@ namespace MeerPflege.API.Controllers
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly TokenService _tokenService;
+    private readonly EmailSender _emailSender;
 
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, TokenService tokenService)
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, TokenService tokenService,
+        EmailSender emailSender)
     {
       _userManager = userManager;
       _signInManager = signInManager;
       _tokenService = tokenService;
+      _emailSender = emailSender;
     }
 
     [HttpPost("login")]
@@ -71,6 +76,29 @@ namespace MeerPflege.API.Controllers
       }
 
       return BadRequest(result.Errors);
+    }
+
+    [HttpPost("forgotPasswordRequest")]
+    public async Task<ActionResult<ResetPasswordDto>> ForgotPasswordRequest(UserDto model)
+    {
+      var user = await _userManager.FindByEmailAsync(model.Email);
+      if(user != null)
+      {
+        string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+        string encodedUserId = HttpUtility.UrlEncode(user.Id);
+        string encodedToken = HttpUtility.UrlEncode(resetToken);
+        string passwordResetUrl = $"http://localhost:9000/#/reset-password?userId={encodedUserId}&token={encodedToken}";
+
+        await _emailSender.SendResetPasswordEmailWithTemplateAsync(model.Email, new
+        {
+          name = user.Email,
+          changePasswordUrl = passwordResetUrl
+        });
+
+        return Ok();
+      }
+
+      return BadRequest();
     }
   }
 }
