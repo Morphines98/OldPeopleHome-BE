@@ -27,8 +27,14 @@ namespace MeerPflege.Application.Elders
             {
                  var entity =await _context.Elders.FindAsync(request.ElderDto.Id);
 
-                if(entity == null) return null;
-                _mapper.Map(request.ElderDto, entity);
+                if(entity == null) 
+                  return null;
+                entity.Name = request.ElderDto.Name;
+                entity.LastName = request.ElderDto.LastName;
+                entity.MedicalConditions = request.ElderDto.MedicalConditions;
+                entity.Hobies = request.ElderDto.Hobies;
+                entity.GroupId = request.ElderDto.GroupId;
+                entity.CarerId = request.ElderDto.CarerId;
             
                 var result = await _context.SaveChangesAsync() > 0;
                 if(!result) return Result<Unit>.Failure("Failed to update.");
