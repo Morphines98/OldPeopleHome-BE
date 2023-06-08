@@ -18,7 +18,7 @@ namespace MeerPflege.Application.SendGrid
       var client = new SendGridClient(_sendGridKey);
       var msg = new SendGridMessage()
       {
-        From = new EmailAddress("andrei.ciornei@outlook.com", "Old People's Home"),
+        From = new EmailAddress("info@oldpeoplehome.com", "Old People's Home"),
         TemplateId = _templateId
       };
 
@@ -33,7 +33,7 @@ namespace MeerPflege.Application.SendGrid
       var client = new SendGridClient(_sendGridKey);
       var msg = new SendGridMessage()
       {
-        From = new EmailAddress("andrei.ciornei@outlook.com", "Old People's Home"),
+        From = new EmailAddress("info@oldpeoplehome.com", "Old People's Home"),
         TemplateId = _resetPasswordTemplateId
       };
 
