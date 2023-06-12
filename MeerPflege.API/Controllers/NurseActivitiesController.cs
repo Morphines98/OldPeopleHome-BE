@@ -5,9 +5,11 @@ using MeerPflege.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MeerPflege.Application.NurseCommands.NurseActivities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MeerPflege.API.Controllers
 {
+     [Authorize(Roles = "Nurse")]
     public class NurseActivitiesController:BaseApiController
     {
          private readonly UserManager<AppUser> _userManager;

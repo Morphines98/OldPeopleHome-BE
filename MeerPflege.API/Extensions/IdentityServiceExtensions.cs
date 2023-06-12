@@ -25,7 +25,7 @@ namespace MeerPflege.API.Extensions
             .AddSignInManager<SignInManager<AppUser>>()
             .AddDefaultTokenProviders();
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("dada otelu e viata mea"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("UHAPDjXUzccXrJSbdFkQaxrhh"));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt => {

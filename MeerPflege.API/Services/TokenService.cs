@@ -23,7 +23,7 @@ namespace MeerPflege.API.Services
                 new Claim("HomeId", user.HomeId.ToString())
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("dada otelu e viata mea"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("UHAPDjXUzccXrJSbdFkQaxrhh"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor{
