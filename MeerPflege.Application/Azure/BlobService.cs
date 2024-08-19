@@ -9,7 +9,7 @@ namespace MeerPflege.Application.Azure
     private const string blobServiceEndpoint = "https://oldpeoplehome.blob.core.windows.net";
     private const string blobContainerName = "files";
     private const string storageAccountName = "oldpeoplehome";
-    private const string storageAccountKey = "eQyW4Onk4BDlAMb/ak2/ySwUTwz3LNwcSWeEloLUb/PXy4N3FEYLQHoXTBTYyCw1lSaE2L8TrGlY+ASts/SUrg==";
+    private const string storageAccountKey = "jbjkgjhkjhdkhk";
 
     private BlobServiceClient _serviceClient;
     private BlobContainerClient _container;
